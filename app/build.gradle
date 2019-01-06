@@ -1,0 +1,82 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "platinum.whatstheplanserver"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    def android_latest_version = "28.0.0"
+    // ^variable for the latest version of android support libraries
+    implementation "com.android.support:support-v4:$android_latest_version"
+    implementation "com.android.support:appcompat-v7:$android_latest_version"
+    implementation "com.android.support:support-core-utils:$android_latest_version"
+    // ^^^android support libraries for the backward compatibility
+    implementation "com.android.support:cardview-v7:$android_latest_version"
+    // ^cardview library by google
+    implementation "com.android.support:recyclerview-v7:$android_latest_version"
+    // ^recyclerview library by google
+    implementation "com.android.support:design:$android_latest_version"
+    // ^material design library by google
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    // ^constraint library by android support
+
+    implementation 'com.google.firebase:firebase-core:16.0.6' // ^Analytics
+    implementation 'com.google.firebase:firebase-database:16.0.5' // ^Realtime Database
+    implementation 'com.google.firebase:firebase-auth:16.1.0' // ^Authentication
+    implementation 'com.google.firebase:firebase-storage:16.0.5' // ^Storage
+    // ^^Firebase libraries by Google
+
+    def firebaseui_latest_version = "4.3.0"
+    // FirebaseUI for Firebase Realtime Database
+    implementation "com.firebaseui:firebase-ui-database:$firebaseui_latest_version"
+    // FirebaseUI for Cloud Firestore
+    implementation "com.firebaseui:firebase-ui-firestore:$firebaseui_latest_version"
+    // FirebaseUI for Firebase Auth
+    implementation "com.firebaseui:firebase-ui-auth:$firebaseui_latest_version"
+    // FirebaseUI for Firebase Auth (GitHub provider)
+    implementation "com.firebaseui:firebase-ui-auth-github:$firebaseui_latest_version"
+    // FirebaseUI for Cloud Storage
+    implementation "com.firebaseui:firebase-ui-storage:$firebaseui_latest_version"
+
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+    // ^^sdp(scalable dp) & ssp(scalable sp) by intuit
+
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    // ^glide library by bumptech for image loading and caching
+
+
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.google.android.gms:play-services-places:16.0.0'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.google.android.gms:play-services-nearby:16.0.0'
+    implementation 'com.google.maps.android:android-maps-utils:0.5'
+    // ^^^^Maps, Places, Location, Nearby api by google play services
+
+    // Fancy-Toast by Shashank02051997
+    implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.3'
+
+}
+apply plugin: 'com.google.gms.google-services'

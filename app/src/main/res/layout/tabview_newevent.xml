@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/round_stroke_whiteffffff_solid_40000000"
+    android:padding="@dimen/_4sdp"
+    android:text="New Event"
+    android:textStyle="bold"
+    android:textColor="@color/WhiteFFFFFF"
+    android:textSize="@dimen/_14ssp"
+    android:fontFamily="cursive"
+    android:gravity="center"/>
