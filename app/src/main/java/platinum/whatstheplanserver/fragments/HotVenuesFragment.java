@@ -4,13 +4,29 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import platinum.whatstheplanserver.R;
+import platinum.whatstheplanserver.adapters.VenuesAdapter;
+import platinum.whatstheplanserver.models.Venue;
 
 public class HotVenuesFragment extends Fragment {
+
+    private TextView mNoVenueTV;
+    private RecyclerView mVenuesRV;
+    private FirebaseFirestore mDbFirestore;
 
 
     public HotVenuesFragment() {
@@ -40,16 +56,35 @@ public class HotVenuesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        initViewsAndVariables ();
+        initViewsAndVariables (view);
         performActions ();
     }
 
-    private void initViewsAndVariables() {
-
+    private void initViewsAndVariables(View view) {
+        mNoVenueTV = view.findViewById(R.id.no_venue_TV);
+        mVenuesRV = view.findViewById(R.id.venues_RV);
+        mDbFirestore = FirebaseFirestore.getInstance();
     }
 
     private void performActions() {
+        displayVenues ();
 
+    }
+
+    private void displayVenues() {
+        CollectionReference venuesDbRef = mDbFirestore.collection("Admins")
+                .document(FirebaseAuth.getInstance().getUid()).collection("Venues");
+
+        FirestoreRecyclerOptions<Venue> frOptions =
+                new FirestoreRecyclerOptions.Builder<Venue>()
+                        .setQuery(venuesDbRef, Venue.class)
+                        .build();
+
+        VenuesAdapter adapter = new VenuesAdapter(frOptions, getActivity());
+        mVenuesRV.setHasFixedSize(true);
+        mVenuesRV.setAdapter(adapter);
+        adapter.startListening();
+        mVenuesRV.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
 }

@@ -16,11 +16,14 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.firestore.GeoPoint;
 
 import platinum.whatstheplanserver.R;
 import platinum.whatstheplanserver.activities.NewEventFirstActivity;
 import platinum.whatstheplanserver.activities.NewVenueFirstActivity;
 import platinum.whatstheplanserver.activities.NewVenueThirdActivity;
+import platinum.whatstheplanserver.models.ParcelableGeoPoint;
+import platinum.whatstheplanserver.models.Venue;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -90,17 +93,30 @@ public class NewVenueFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "onActivityResult: requestCode = " + requestCode);
+        Log.d(TAG, "onActivityResult: resultcode = " + resultCode);
         switch (requestCode) {
             case REQUEST_PLACE_PICKER_CODE_1 :
                 if (resultCode == RESULT_OK) {
                     Place place = PlacePicker.getPlace(getActivity(), data);
-                    mLatLng = place.getLatLng();
                     Log.d(TAG, "onActivityResult: place-name = " + place.getName());
+                    Venue venue = new Venue(
+                            null,
+                            place.getName().toString(),
+                            place.getAddress().toString(),
+                            null,
+                            null,
+                            null,
+                            null,
+                            new GeoPoint(place.getLatLng().latitude, place.getLatLng().longitude));
+                    Intent intent = new Intent(getActivity(), NewVenueFirstActivity.class);
+                    intent.putExtra("venue", venue);
+                    startActivity(intent);
                 }
         }
     }

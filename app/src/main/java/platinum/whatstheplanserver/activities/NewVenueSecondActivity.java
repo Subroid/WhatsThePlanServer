@@ -2,6 +2,7 @@ package platinum.whatstheplanserver.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import platinum.whatstheplanserver.R;
 import platinum.whatstheplanserver.activities.authentications.SignInActivity;
+import platinum.whatstheplanserver.models.Venue;
 
 public class NewVenueSecondActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,8 +25,7 @@ public class NewVenueSecondActivity extends AppCompatActivity implements View.On
     private EditText mVenueSubEventsET;
     private Button mNextBTN;
     private FirebaseUser mCurrentUser;
-    private List<String> mVenueValues;
-
+    private Venue mVenue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +53,10 @@ public class NewVenueSecondActivity extends AppCompatActivity implements View.On
     }
 
     private void initViewsAndVariables() {
-        mVenueValues = getIntent().getStringArrayListExtra("venue_values");
+        mVenue = getIntent().getParcelableExtra("venue");
         mVenueMainEventET = findViewById(R.id.venue_main_event_ET);
         mVenueSubEventsET = findViewById(R.id.venue_sub_events_ET);
         mNextBTN = findViewById(R.id.next_BTN);
-        Toast.makeText(this, mVenueValues.get(1).toString(),Toast.LENGTH_LONG).show();
     }
 
     public void onClick(View view) {
@@ -64,11 +64,9 @@ public class NewVenueSecondActivity extends AppCompatActivity implements View.On
             case R.id.next_BTN :
                 String venueMainEvent = mVenueMainEventET.getText().toString();
                 String venueSubEvents = mVenueSubEventsET.getText().toString();
-                String[] arrVenueValues =  new String[] {venueMainEvent, venueSubEvents};
-                List<String> listVenueValues = Arrays.asList(arrVenueValues);
-
-                mVenueValues.addAll(listVenueValues);
-                navigateToNewActivityCarryingDataList(NewVenueThirdActivity.class, "venue_values", mVenueValues);
+                mVenue.setVenue_main_event(venueMainEvent);
+                mVenue.setVenue_sub_events(venueSubEvents);
+                navigateToNewActivityCarryingData(NewVenueThirdActivity.class, "venue", mVenue);
         }
     }
 
@@ -77,9 +75,9 @@ public class NewVenueSecondActivity extends AppCompatActivity implements View.On
         startActivity(intent);
     }
 
-    private void navigateToNewActivityCarryingDataList(Class classname, String key, List<String> values) {
+    private void navigateToNewActivityCarryingData(Class classname, String key, Parcelable venue) {
         Intent intent = new Intent(NewVenueSecondActivity.this, classname);
-        intent.putStringArrayListExtra(key, (ArrayList<String>) values);
+        intent.putExtra(key, venue);
         startActivity(intent);
     }
 }

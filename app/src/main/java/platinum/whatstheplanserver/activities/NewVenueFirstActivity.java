@@ -2,6 +2,7 @@ package platinum.whatstheplanserver.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,11 +13,11 @@ import android.widget.Spinner;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import platinum.whatstheplanserver.R;
 import platinum.whatstheplanserver.activities.authentications.SignInActivity;
+import platinum.whatstheplanserver.models.Venue;
 
 public class NewVenueFirstActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,7 +27,7 @@ public class NewVenueFirstActivity extends AppCompatActivity implements View.OnC
     private String [] mVenueTypes;
     private Button mNextBTN;
     private FirebaseUser mCurrentUser;
-    private List<String> mVenueValues;
+    private Venue mVenue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +59,14 @@ public class NewVenueFirstActivity extends AppCompatActivity implements View.OnC
     }
 
     private void initViewsAndVariables() {
+        mVenue = getIntent().getParcelableExtra("venue");
         mVenueNameET = findViewById(R.id.venue_name_ET);
+        mVenueNameET.setText(mVenue.getVenue_name());
         mVenueTypes = new String[]{"Select Venue Type", "Restaurant", "Auditorium", "Club", "Stadium", "Other"};
         mVenueTypeSPNR = findViewById(R.id.venue_type_SPNR);
         mVenueAddressET = findViewById(R.id.venue_address_ET);
+        mVenueAddressET.setText(mVenue.getVenue_address());
         mNextBTN = findViewById(R.id.next_BTN);
-        mVenueValues = new ArrayList<>();
 
     }
 
@@ -71,13 +74,11 @@ public class NewVenueFirstActivity extends AppCompatActivity implements View.OnC
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.next_BTN :
-                String venueName = mVenueNameET.getText().toString();
                 String venueType = mVenueTypeSPNR.getSelectedItem().toString();
-                String venueAddress = mVenueAddressET.getText().toString();
-                String[] arrVenueValues =  new String[] {venueName, venueType, venueAddress};
-                List<String> listVenueValues = Arrays.asList(arrVenueValues);
-                mVenueValues.addAll(listVenueValues);
-                navigateToNewActivityCarryingDataList(NewVenueSecondActivity.class, "venue_values", mVenueValues);
+                mVenue.setVenue_name(mVenueNameET.getText().toString());
+                mVenue.setVenue_address(mVenueAddressET.getText().toString());
+                mVenue.setVenue_type(venueType);
+                navigateToNewActivityCarryingData(NewVenueSecondActivity.class, "venue", mVenue);
         }
     }
 
@@ -93,9 +94,9 @@ public class NewVenueFirstActivity extends AppCompatActivity implements View.OnC
         startActivity(intent);
     }
 
-    private void navigateToNewActivityCarryingDataList(Class classname, String key, List<String> values) {
+    private void navigateToNewActivityCarryingData(Class classname, String key, Parcelable venue) {
         Intent intent = new Intent(NewVenueFirstActivity.this, classname);
-        intent.putStringArrayListExtra(key, (ArrayList<String>) values);
+        intent.putExtra(key, venue);
         startActivity(intent);
     }
 }

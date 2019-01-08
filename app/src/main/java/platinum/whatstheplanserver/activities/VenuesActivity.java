@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.firebase.auth.FirebaseUser;
 
@@ -31,6 +32,7 @@ public class VenuesActivity extends AppCompatActivity {
     private EventActionsPagerAdapter mEventActionsPagerAdapter;
     private List<Fragment> mFragmentList;
     private FirebaseUser mCurrentUser;
+    private Boolean mDifferentViewPagerCurrentTab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,19 +53,26 @@ public class VenuesActivity extends AppCompatActivity {
         tabLayoutTL.setupWithViewPager(viewPagerVP);
         tabLayoutTL.getTabAt(0).setCustomView(R.layout.tabview_newvenue);
         tabLayoutTL.getTabAt(1).setCustomView(R.layout.tabview_hotvenues);
-        tabLayoutTL.getTabAt(2).setCustomView(R.layout.tabview_pastvenues);
+        if (mDifferentViewPagerCurrentTab) {
+            viewPagerVP.setCurrentItem(tabLayoutTL.getTabAt(1).getPosition());
+        }
 
     }
 
 
     private void initViewsAndVariables() {
 
+        mDifferentViewPagerCurrentTab  = false;
+        if (getIntent().getBooleanExtra("mDifferentViewPagerCurrentTab", false)) {
+            mDifferentViewPagerCurrentTab = true;
+        }
+        Log.d(TAG, "initViewsAndVariables: mDifferentViewPagerCurrentTab = " + mDifferentViewPagerCurrentTab);
         tabLayoutTL = findViewById(R.id.tabLayout_TL);
         viewPagerVP = findViewById(R.id.viewpager_VP);
         mFragmentList = new ArrayList<>();
         mFragmentList.add(NewVenueFragment.newInstance());
         mFragmentList.add(HotVenuesFragment.newInstance());
-        mFragmentList.add(PastVenuesFragment.newInstance());
+        //todo mVenue..PagerAdapter
         mEventActionsPagerAdapter = new EventActionsPagerAdapter(getSupportFragmentManager(), mFragmentList);
 
     }

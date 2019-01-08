@@ -41,7 +41,7 @@ public class EventsActivity extends AppCompatActivity {
         tabLayoutTL.setupWithViewPager(viewPagerVP);
         tabLayoutTL.getTabAt(0).setCustomView(R.layout.tabview_newevent);
         tabLayoutTL.getTabAt(1).setCustomView(R.layout.tabview_hotevents);
-        tabLayoutTL.getTabAt(2).setCustomView(R.layout.tabview_pastevents);
+
 
     }
 
@@ -53,7 +53,6 @@ public class EventsActivity extends AppCompatActivity {
         mFragmentList = new ArrayList<>();
         mFragmentList.add(NewEventFragment.newInstance());
         mFragmentList.add(HotEventsFragment.newInstance());
-        mFragmentList.add(PastEventsFragment.newInstance());
         mEventActionsPagerAdapter = new EventActionsPagerAdapter(getSupportFragmentManager(), mFragmentList);
 
     }
