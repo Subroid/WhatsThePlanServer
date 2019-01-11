@@ -78,6 +78,7 @@ public class NewVenueFirstActivity extends AppCompatActivity implements View.OnC
                 mVenue.setVenue_name(mVenueNameET.getText().toString());
                 mVenue.setVenue_address(mVenueAddressET.getText().toString());
                 mVenue.setVenue_type(venueType);
+                finish();
                 navigateToNewActivityCarryingData(NewVenueSecondActivity.class, "venue", mVenue);
         }
     }

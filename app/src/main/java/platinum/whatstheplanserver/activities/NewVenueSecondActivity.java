@@ -66,6 +66,7 @@ public class NewVenueSecondActivity extends AppCompatActivity implements View.On
                 String venueSubEvents = mVenueSubEventsET.getText().toString();
                 mVenue.setVenue_main_event(venueMainEvent);
                 mVenue.setVenue_sub_events(venueSubEvents);
+                finish();
                 navigateToNewActivityCarryingData(NewVenueThirdActivity.class, "venue", mVenue);
         }
     }

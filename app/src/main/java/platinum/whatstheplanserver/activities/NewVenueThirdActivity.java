@@ -137,6 +137,7 @@ public class NewVenueThirdActivity extends AppCompatActivity implements View.OnC
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
                                                     mProgressBar.setVisibility(View.GONE);
+                                                    finish();
                                                     navigateToNewActivity(VenuesActivity.class);
                                                 }
                                             });

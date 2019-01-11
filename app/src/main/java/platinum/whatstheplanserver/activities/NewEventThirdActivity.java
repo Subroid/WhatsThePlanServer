@@ -78,6 +78,7 @@ public class NewEventThirdActivity extends AppCompatActivity implements
             case R.id.next_BTN :
                 mEvent.setEvent_date(mEventDateET.getText().toString());
                 mEvent.setEvent_time(mEventTimeET.getText().toString());
+                finish();
                 navigateToNewActivityCarryingData(NewEventFourthActivity.class, "event", mEvent);
                 break;
         }

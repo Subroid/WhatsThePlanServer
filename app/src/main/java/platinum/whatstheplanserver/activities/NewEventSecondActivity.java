@@ -100,6 +100,7 @@ public class NewEventSecondActivity extends AppCompatActivity implements View.On
                 mEvent.setEvent_name(mEventName.getText().toString());
                 mEvent.setEvent_type(mEventTypeSPNR.getSelectedItem().toString());
                 mEvent.setEvent_subtype(mEventSubtypeSPNR.getSelectedItem().toString());
+                finish();
                 navigateToNewActivityCarryingData (NewEventThirdActivity.class, "event", mEvent);
         }
     }
