@@ -106,6 +106,7 @@ public class NewEventFourthActivity extends AppCompatActivity implements View.On
 
             case R.id.submit_BTN :
                 mProgressBar.setVisibility(View.VISIBLE);
+                mSubmitBTN.setText("");
                 Bitmap eventBitmap = ((BitmapDrawable) mEventImageIV.getDrawable()).getBitmap();
                 ByteArrayOutputStream venueBaos = new ByteArrayOutputStream();
                 eventBitmap.compress(Bitmap.CompressFormat.WEBP, 50, venueBaos);
@@ -139,7 +140,7 @@ public class NewEventFourthActivity extends AppCompatActivity implements View.On
                                                             .update("event_id", eventId).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                         @Override
                                                         public void onSuccess(Void aVoid) {
-                                                            mProgressBar.setVisibility(View.GONE);
+
                                                             mEvent.setEvent_id(eventId);
 
                                                             mEventDbRef = mFireDb.collection("Admins")
@@ -157,6 +158,7 @@ public class NewEventFourthActivity extends AppCompatActivity implements View.On
                                                                              mEventDbRef.set(mEvent).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                                  @Override
                                                                                  public void onSuccess(Void aVoid) {
+                                                                                     mProgressBar.setVisibility(View.GONE);
                                                                                      navigateToNewActivity(EventsActivity.class);
                                                                                  }
                                                                              });
@@ -203,6 +205,7 @@ public class NewEventFourthActivity extends AppCompatActivity implements View.On
     private void navigateToNewActivity(Class classname) {
         Intent intent = new Intent(NewEventFourthActivity.this, classname);
         intent.putExtra("mDifferentViewPagerCurrentTab", true);
+        finish();
         startActivity(intent);
     }
 }

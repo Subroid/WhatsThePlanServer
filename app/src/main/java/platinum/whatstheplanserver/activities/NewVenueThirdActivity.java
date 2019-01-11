@@ -102,6 +102,7 @@ public class NewVenueThirdActivity extends AppCompatActivity implements View.OnC
 
             case R.id.submit_BTN :
                 mProgressBar.setVisibility(View.VISIBLE);
+                mSubmitBTN.setText("");
                 Bitmap venueBitmap = ((BitmapDrawable) mVenueImageIV.getDrawable()).getBitmap();
                 ByteArrayOutputStream venueBaos = new ByteArrayOutputStream();
                 venueBitmap.compress(Bitmap.CompressFormat.WEBP, 50, venueBaos);
@@ -177,6 +178,7 @@ public class NewVenueThirdActivity extends AppCompatActivity implements View.OnC
     private void navigateToNewActivity(Class classname) {
         Intent intent = new Intent(NewVenueThirdActivity.this, classname);
         intent.putExtra("mDifferentViewPagerCurrentTab", true);
+        finish();
         startActivity(intent);
     }
 }
