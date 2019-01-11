@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="left"
-    android:textColor="@color/WhiteFFFFFF"
+    android:textColor="@color/Black000000"
     android:textSize="@dimen/_14ssp"
     android:elevation="@dimen/_1sdp"
-    android:padding="@dimen/_5sdp"
-    android:background="@color/Blue254E58"/>
+    android:padding="@dimen/_10sdp"
+    android:background="@color/WhiteFFFFFF"/>

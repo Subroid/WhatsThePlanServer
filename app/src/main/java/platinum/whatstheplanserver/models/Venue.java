@@ -14,12 +14,13 @@ public class Venue implements Parcelable {
     private String venue_main_event;
     private String venue_sub_events;
     private String venue_image;
+    private String admin_id;
     private GeoPoint venue_geopoint;
 
     public Venue() {
     }
 
-    public Venue(String venue_id, String venue_name, String venue_address, String venue_type, String venue_main_event, String venue_sub_events, String venue_image, GeoPoint venue_geopoint) {
+    public Venue(String venue_id, String venue_name, String venue_address, String venue_type, String venue_main_event, String venue_sub_events, String venue_image, String admin_id, GeoPoint venue_geopoint) {
         this.venue_id = venue_id;
         this.venue_name = venue_name;
         this.venue_address = venue_address;
@@ -27,6 +28,7 @@ public class Venue implements Parcelable {
         this.venue_main_event = venue_main_event;
         this.venue_sub_events = venue_sub_events;
         this.venue_image = venue_image;
+        this.admin_id = admin_id;
         this.venue_geopoint = venue_geopoint;
     }
 
@@ -38,6 +40,7 @@ public class Venue implements Parcelable {
         venue_main_event = in.readString();
         venue_sub_events = in.readString();
         venue_image = in.readString();
+        admin_id = in.readString();
         Double lat = in.readDouble();
         Double lng = in.readDouble();
         venue_geopoint = new GeoPoint(lat, lng);
@@ -111,6 +114,14 @@ public class Venue implements Parcelable {
         this.venue_image = venue_image;
     }
 
+    public String getAdmin_id() {
+        return admin_id;
+    }
+
+    public void setAdmin_id(String admin_id) {
+        this.admin_id = admin_id;
+    }
+
     public GeoPoint getVenue_geopoint() {
         return venue_geopoint;
     }
@@ -134,6 +145,7 @@ public class Venue implements Parcelable {
         parcel.writeString(venue_main_event);
         parcel.writeString(venue_sub_events);
         parcel.writeString(venue_image);
+        parcel.writeString(admin_id);
         parcel.writeDouble(venue_geopoint.getLatitude());
         parcel.writeDouble(venue_geopoint.getLongitude());
     }

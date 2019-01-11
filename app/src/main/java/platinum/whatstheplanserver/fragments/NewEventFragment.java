@@ -15,7 +15,7 @@ import platinum.whatstheplanserver.activities.NewEventFirstActivity;
 
 public class NewEventFragment extends Fragment implements View.OnClickListener {
 
-    ImageView addIV;
+    private ImageView addIV;
 
     public NewEventFragment() {
         // Required empty public constructor

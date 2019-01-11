@@ -6,11 +6,11 @@
     android:layout_height="@dimen/_250sdp">
 
     <ImageView
-        android:id="@+id/venue_layout_bg_IV"
+        android:id="@+id/event_layout_bg_IV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:background="@drawable/venues"
+        android:background="@drawable/events"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -35,10 +35,10 @@
         app:layout_constraintWidth_percent="0.5">
 
         <ImageView
-            android:id="@+id/venue_image_IV"
+            android:id="@+id/event_image_IV"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@drawable/venues"
+            android:background="@drawable/events"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -57,20 +57,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/venue_image_IV"
+            app:layout_constraintStart_toEndOf="@+id/event_image_IV"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:layout_constraintWidth_default="percent"
             app:layout_constraintWidth_percent="0.5">
 
             <TextView
-                android:id="@+id/venue_name_TV"
+                android:id="@+id/event_name_TV"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:fontFamily="serif-monospace"
                 android:gravity="center"
                 android:background="@drawable/rectangle_strokeonly_whiteffffff_start_bottom"
-                android:text="Google Headquarter"
+                android:text="Android I/O 2019"
                 android:textColor="@color/WhiteFFFFFF"
                 android:textSize="@dimen/_16ssp"
                 android:textStyle="bold"
@@ -83,31 +83,31 @@
 
 
             <TextView
-                android:id="@+id/venue_type_TV"
+                android:id="@+id/event_date_TV"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:fontFamily="monospace"
                 android:gravity="center"
-                android:text="Type :\nAuditorium"
+                android:text="Date :\n10/01/2019"
                 android:textColor="@color/WhiteFFFFFF"
                 android:textSize="@dimen/_10ssp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/venue_main_event_TV"
+                app:layout_constraintBottom_toTopOf="@+id/event_time_TV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_default="percent"
                 app:layout_constraintHeight_percent="0.25"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/venue_name_TV" />
+                app:layout_constraintTop_toBottomOf="@+id/event_name_TV" />
 
 
             <TextView
-                android:id="@+id/venue_main_event_TV"
+                android:id="@+id/event_time_TV"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:fontFamily="monospace"
                 android:gravity="center"
-                android:text="Main Event :\nProgramming"
+                android:text="Time :\n10:10am"
                 android:textColor="@color/WhiteFFFFFF"
                 android:textSize="@dimen/_10ssp"
                 android:textStyle="bold"
@@ -117,24 +117,24 @@
                 app:layout_constraintHeight_percent="0.25"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/venue_type_TV" />
+                app:layout_constraintTop_toBottomOf="@+id/event_date_TV" />
 
         </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>
 
     <TextView
-        android:id="@+id/venue_sub_events_TV"
+        android:id="@+id/venue_name_TV"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#cc000000"
         android:fontFamily="monospace"
         android:gravity="start|bottom"
-        android:text="Sub Events : Coding, Debugging"
+        android:paddingLeft="@dimen/_5sdp"
+        android:text="Venue : Google Headquarter"
         android:textColor="@color/WhiteFFFFFF"
         android:textSize="@dimen/_10ssp"
         android:textStyle="bold"
-        android:paddingLeft="@dimen/_5sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_default="percent"
@@ -162,7 +162,7 @@
         app:layout_constraintHeight_percent="0.2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/venue_sub_events_TV"
+        app:layout_constraintTop_toBottomOf="@+id/venue_name_TV"
         app:layout_constraintVertical_bias="0.0" />
 
 

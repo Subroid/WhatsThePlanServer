@@ -6,11 +6,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
-public class EventActionsPagerAdapter extends FragmentPagerAdapter {
+public class EventsOrVenuesPagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> fragmentList;
 
-    public EventActionsPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
+    public EventsOrVenuesPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
         fragmentList = fragments;
     }

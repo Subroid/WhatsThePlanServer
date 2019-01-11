@@ -5,7 +5,7 @@
     android:background="@drawable/gradient_blue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.NewEventFirstActivity">
+    tools:context=".activities.NewEventSecondActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -51,13 +51,11 @@
                 android:id="@+id/event_date_ET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_shpae_blue254e58"
-                android:ems="10"
-                android:hint="Event Date"
-                android:inputType="date"
-                android:padding="@dimen/_5sdp"
-                android:textColor="@color/WhiteFFFFFF"
-                android:textColorHint="@color/GreyCDCDCD"
+                android:background="@color/WhiteFFFFFF"
+                android:padding="@dimen/_10sdp"
+                android:text="Event Date"
+                android:textSize="@dimen/_14ssp"
+                android:textColor="@color/Black000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -70,13 +68,11 @@
                 android:id="@+id/event_time_ET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_shpae_blue254e58"
-                android:ems="10"
-                android:hint="Event Time"
-                android:inputType="time"
-                android:padding="@dimen/_5sdp"
-                android:textColor="@color/WhiteFFFFFF"
-                android:textColorHint="@color/GreyCDCDCD"
+                android:background="@color/WhiteFFFFFF"
+                android:padding="@dimen/_10sdp"
+                android:text="Event Time"
+                android:textSize="@dimen/_14ssp"
+                android:textColor="@color/Black000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -86,11 +82,11 @@
 
 
             <Button
-                android:id="@+id/submit_BTN"
-                android:layout_width="match_parent"
+                android:id="@+id/next_BTN"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimaryDark"
-                android:text="SUBMIT"
+                android:text="Next"
                 android:textColor="@color/WhiteFFFFFF"
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="bold"
@@ -103,7 +99,6 @@
 
 
         </android.support.constraint.ConstraintLayout>
-
 
     </android.support.v7.widget.CardView>
 

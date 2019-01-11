@@ -29,8 +29,8 @@
         <activity android:name=".activities.authentications.SignUpActivity" />
         <activity android:name=".activities.authentications.NameSubmitActivity" />
         <activity android:name=".activities.authentications.PasswordResetActivity" />
-        <activity android:name=".activities.NewEventFirstActivity" />
         <activity android:name=".activities.NewEventSecondActivity" />
+        <activity android:name=".activities.NewEventFirstActivity" />
         <activity android:name=".activities.NewEventThirdActivity" />
         <activity android:name=".activities.HomeActivity" />
         <activity android:name=".activities.VenuesActivity" />
@@ -51,7 +51,8 @@
 
         <activity
             android:name=".activities.VenueOnMapActivity"
-            android:label="@string/title_activity_venue_on_map"></activity>
+            android:label="@string/title_activity_venue_on_map" />
+        <activity android:name=".activities.NewEventFourthActivity"></activity>
     </application>
 
 </manifest>

@@ -15,13 +15,9 @@ import java.util.List;
 
 import platinum.whatstheplanserver.R;
 import platinum.whatstheplanserver.activities.authentications.SignInActivity;
-import platinum.whatstheplanserver.adapters.EventActionsPagerAdapter;
-import platinum.whatstheplanserver.fragments.HotEventsFragment;
+import platinum.whatstheplanserver.adapters.EventsOrVenuesPagerAdapter;
 import platinum.whatstheplanserver.fragments.HotVenuesFragment;
-import platinum.whatstheplanserver.fragments.NewEventFragment;
 import platinum.whatstheplanserver.fragments.NewVenueFragment;
-import platinum.whatstheplanserver.fragments.PastEventsFragment;
-import platinum.whatstheplanserver.fragments.PastVenuesFragment;
 
 public class VenuesActivity extends AppCompatActivity {
 
@@ -29,7 +25,7 @@ public class VenuesActivity extends AppCompatActivity {
 
     private TabLayout tabLayoutTL;
     private ViewPager viewPagerVP;
-    private EventActionsPagerAdapter mEventActionsPagerAdapter;
+    private EventsOrVenuesPagerAdapter mVenuesPagerAdapter;
     private List<Fragment> mFragmentList;
     private FirebaseUser mCurrentUser;
     private Boolean mDifferentViewPagerCurrentTab;
@@ -49,7 +45,7 @@ public class VenuesActivity extends AppCompatActivity {
     }
 
     private void tabLayoutTLActions() {
-        viewPagerVP.setAdapter(mEventActionsPagerAdapter);
+        viewPagerVP.setAdapter(mVenuesPagerAdapter);
         tabLayoutTL.setupWithViewPager(viewPagerVP);
         tabLayoutTL.getTabAt(0).setCustomView(R.layout.tabview_newvenue);
         tabLayoutTL.getTabAt(1).setCustomView(R.layout.tabview_hotvenues);
@@ -73,7 +69,7 @@ public class VenuesActivity extends AppCompatActivity {
         mFragmentList.add(NewVenueFragment.newInstance());
         mFragmentList.add(HotVenuesFragment.newInstance());
         //todo mVenue..PagerAdapter
-        mEventActionsPagerAdapter = new EventActionsPagerAdapter(getSupportFragmentManager(), mFragmentList);
+        mVenuesPagerAdapter = new EventsOrVenuesPagerAdapter(getSupportFragmentManager(), mFragmentList);
 
     }
 
