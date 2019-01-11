@@ -50,12 +50,13 @@
                 android:id="@+id/venue_name_ET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_shpae_blue254e58"
+                android:background="@color/WhiteFFFFFF"
                 android:ems="10"
                 android:hint="Venue Name"
                 android:inputType="textPersonName"
-                android:padding="@dimen/_5sdp"
-                android:textColor="@color/WhiteFFFFFF"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/Black000000"
+                android:textSize="@dimen/_14ssp"
                 android:textColorHint="@color/GreyCDCDCD"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,52 +66,43 @@
                 app:layout_constraintVertical_bias="0.02" />
 
 
-            <RelativeLayout
-                android:id="@+id/venue_type_container_RL"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/venue_name_ET"
-                app:layout_constraintVertical_bias="0.02">
-
-                <Spinner
-                    android:id="@+id/venue_type_SPNR"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/Blue254E58"
-                    android:popupBackground="@color/transparent"
-                    android:spinnerMode="dropdown" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@id/venue_type_SPNR"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:src="@drawable/ic_arrow_drop_down" />
-
-            </RelativeLayout>
-
-
             <EditText
-                android:id="@+id/venue_address_ET"
+                android:id="@+id/venue_type_ET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_shpae_blue254e58"
+                android:background="@color/WhiteFFFFFF"
                 android:ems="10"
-                android:hint="Venue Address"
+                android:hint="Venue Type (eg. Club, Restaurant etc.)"
                 android:inputType="textPersonName"
-                android:padding="@dimen/_5sdp"
-                android:textColor="@color/WhiteFFFFFF"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/Black000000"
+                android:textSize="@dimen/_14ssp"
                 android:textColorHint="@color/GreyCDCDCD"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/venue_type_container_RL"
-                app:layout_constraintVertical_bias="0.02" />
+                app:layout_constraintTop_toBottomOf="@+id/venue_name_ET"
+                app:layout_constraintVertical_bias="0.1"/>
+
+            <EditText
+                android:id="@+id/venue_address_ET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/WhiteFFFFFF"
+                android:ems="10"
+                android:hint="Venue Address"
+                android:inputType="textPersonName"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/Black000000"
+                android:textSize="@dimen/_14ssp"
+                android:textColorHint="@color/GreyCDCDCD"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/venue_type_ET"
+                app:layout_constraintVertical_bias="0.1" />
 
 
             <Button

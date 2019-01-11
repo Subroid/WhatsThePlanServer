@@ -22,9 +22,8 @@ import platinum.whatstheplanserver.models.Venue;
 public class NewVenueFirstActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText mVenueNameET;
-    private Spinner mVenueTypeSPNR;
+    private EditText mVenueTypeET;
     private EditText mVenueAddressET;
-    private String [] mVenueTypes;
     private Button mNextBTN;
     private FirebaseUser mCurrentUser;
     private Venue mVenue;
@@ -40,8 +39,12 @@ public class NewVenueFirstActivity extends AppCompatActivity implements View.OnC
     }
 
     private void performActions() {
-        mVenueTypeSPNRActions ();
+        mVenueTypeEtActions ();
         mNextBTNActions ();
+    }
+
+    private void mVenueTypeEtActions() {
+
     }
 
     private void mNextBTNActions () {
@@ -49,21 +52,12 @@ public class NewVenueFirstActivity extends AppCompatActivity implements View.OnC
     }
 
 
-    private void mVenueTypeSPNRActions() {
-
-        ArrayAdapter<String> venuesTypesAdapter = new ArrayAdapter<>(NewVenueFirstActivity.this,
-                                                                    R.layout.layout_spinner_item,
-                mVenueTypes);
-        mVenueTypeSPNR.setAdapter(venuesTypesAdapter);
-
-    }
 
     private void initViewsAndVariables() {
         mVenue = getIntent().getParcelableExtra("venue");
         mVenueNameET = findViewById(R.id.venue_name_ET);
         mVenueNameET.setText(mVenue.getVenue_name());
-        mVenueTypes = new String[]{"Select Venue Type", "Restaurant", "Auditorium", "Club", "Stadium", "Other"};
-        mVenueTypeSPNR = findViewById(R.id.venue_type_SPNR);
+        mVenueTypeET = findViewById(R.id.venue_type_ET);
         mVenueAddressET = findViewById(R.id.venue_address_ET);
         mVenueAddressET.setText(mVenue.getVenue_address());
         mNextBTN = findViewById(R.id.next_BTN);
@@ -74,7 +68,7 @@ public class NewVenueFirstActivity extends AppCompatActivity implements View.OnC
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.next_BTN :
-                String venueType = mVenueTypeSPNR.getSelectedItem().toString();
+                String venueType = mVenueTypeET.getText().toString();
                 mVenue.setVenue_name(mVenueNameET.getText().toString());
                 mVenue.setVenue_address(mVenueAddressET.getText().toString());
                 mVenue.setVenue_type(venueType);

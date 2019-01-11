@@ -46,42 +46,52 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-            <EditText
-                android:id="@+id/venue_main_event_ET"
+            <RelativeLayout
+                android:id="@+id/venue_type_container_RL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_shpae_blue254e58"
-                android:ems="10"
-                android:hint="Venue Main Event (e.g. Sport)"
-                android:inputType="textPersonName"
-                android:padding="@dimen/_5sdp"
-                android:textColor="@color/WhiteFFFFFF"
-                android:textColorHint="@color/GreyCDCDCD"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.02" />
+                app:layout_constraintVertical_bias="0.02">
+
+                <Spinner
+                    android:id="@+id/venue_main_event_SPNR"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/WhiteFFFFFF"
+                    android:popupBackground="@color/transparent"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@id/venue_main_event_SPNR"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:src="@drawable/ic_arrow_drop_down" />
+
+            </RelativeLayout>
 
             <EditText
                 android:id="@+id/venue_sub_events_ET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_shpae_blue254e58"
+                android:background="@color/WhiteFFFFFF"
                 android:ems="10"
                 android:hint="Venue Sub Events (e.g. Cricket, Football)"
                 android:inputType="textPersonName"
-                android:padding="@dimen/_5sdp"
+                android:padding="@dimen/_10sdp"
+                android:textSize="@dimen/_14ssp"
                 android:textColor="@color/WhiteFFFFFF"
                 android:textColorHint="@color/GreyCDCDCD"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/venue_main_event_ET"
-                app:layout_constraintVertical_bias="0.02" />
+                app:layout_constraintTop_toBottomOf="@+id/venue_type_container_RL"
+                app:layout_constraintVertical_bias="0.1" />
 
 
             <Button
