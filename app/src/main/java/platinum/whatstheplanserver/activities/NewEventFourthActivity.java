@@ -150,18 +150,13 @@ public class NewEventFourthActivity extends AppCompatActivity implements View.On
                                                             mEventDbRef.set(mEvent).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                  @Override
                                                                  public void onSuccess(Void aVoid) {
-                                                                     mEventDbRef = mFireDb.collection("Events").document(mEvent.getEvent_id());
-                                                                     mEventDbRef.set(mEvent).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                     mEventsDbRef = mFireDb.collection(mEvent.getEvent_type());
+                                                                     mEventsDbRef.add(mEvent).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                                          @Override
-                                                                         public void onSuccess(Void aVoid) {
-                                                                             mEventDbRef = mFireDb.collection(mEvent.getEvent_type()).document(mEvent.getEvent_id());
-                                                                             mEventDbRef.set(mEvent).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                                 @Override
-                                                                                 public void onSuccess(Void aVoid) {
-                                                                                     mProgressBar.setVisibility(View.GONE);
-                                                                                     navigateToNewActivity(EventsActivity.class);
-                                                                                 }
-                                                                             });
+                                                                         public void onSuccess(DocumentReference documentReference) {
+                                                                             mProgressBar.setVisibility(View.GONE);
+                                                                             navigateToNewActivity(EventsActivity.class);
+
                                                                          }
                                                                      });
                                                                  }
