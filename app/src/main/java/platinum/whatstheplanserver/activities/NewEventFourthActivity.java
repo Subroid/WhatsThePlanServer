@@ -15,11 +15,16 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
+import com.firebase.geofire.GeoFire;
+import com.firebase.geofire.GeoLocation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -46,6 +51,7 @@ public class NewEventFourthActivity extends AppCompatActivity implements View.On
     private FirebaseUser mCurrentUser;
     private Boolean mVenueImageUploadClicked;
     private FirebaseFirestore mFireDb;
+    private FirebaseDatabase mFireDb2;
     private CollectionReference mEventsDbRef;
     private DocumentReference mEventDbRef;
     private final int REQUEST_SELECT_PICTURE_CODE_1 =  1;
@@ -81,6 +87,7 @@ public class NewEventFourthActivity extends AppCompatActivity implements View.On
         mEvent = getIntent().getParcelableExtra("event");
         mProgressBar = findViewById(R.id.progressBar);
         mFireDb = FirebaseFirestore.getInstance();
+        mFireDb2 = FirebaseDatabase.getInstance();
         mEventsDbRef = mFireDb.collection("Admins")
                 .document(mCurrentUser.getUid())
                 .collection("Venues")
@@ -150,12 +157,21 @@ public class NewEventFourthActivity extends AppCompatActivity implements View.On
                                                             mEventDbRef.set(mEvent).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                  @Override
                                                                  public void onSuccess(Void aVoid) {
-                                                                     mEventsDbRef = mFireDb.collection(mEvent.getEvent_type());
-                                                                     mEventsDbRef.add(mEvent).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                                     mEventDbRef = mFireDb.collection(mEvent.getEvent_type()).document(mEvent.getEvent_id());
+                                                                     mEventDbRef.set(mEvent).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                          @Override
-                                                                         public void onSuccess(DocumentReference documentReference) {
-                                                                             mProgressBar.setVisibility(View.GONE);
-                                                                             navigateToNewActivity(EventsActivity.class);
+                                                                         public void onSuccess(Void aVoid) {
+                                                                             GeoFire geoFire = new GeoFire(mFireDb2.getReference(mEvent.getEvent_type() + "Locations"));
+                                                                             geoFire.setLocation(mEvent.getEvent_id(),
+                                                                                     new GeoLocation(mEvent.getEvent_geopoint().getLatitude(), mEvent.getEvent_geopoint().getLongitude()),
+                                                                                     new GeoFire.CompletionListener() {
+                                                                                         @Override
+                                                                                         public void onComplete(String key, DatabaseError error) {
+                                                                                             Log.d(TAG, "onComplete: key = " + key);
+                                                                                             mProgressBar.setVisibility(View.GONE);
+                                                                                             navigateToNewActivity(EventsActivity.class);
+                                                                                         }
+                                                                                     });
 
                                                                          }
                                                                      });
