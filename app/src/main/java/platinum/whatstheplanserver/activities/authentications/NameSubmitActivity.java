@@ -10,9 +10,11 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -49,14 +51,30 @@ public class NameSubmitActivity extends AppCompatActivity implements View.OnClic
                 case R.id.submitBTN :
                         mFirstNameString = firstnameTIET.getText().toString();
                         mLastNameString = lastnameTIET.getText().toString();
-                        final FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
+                        FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
                     Log.d(TAG, "onClick: current_user.getUid() = " + current_user.getUid());
+                    UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(mFirstNameString + " "  + mLastNameString)
+                            .build();
+                    current_user.updateProfile(userProfileChangeRequest);
 
-                    FirebaseFirestore.getInstance().collection("Users")
+                    FirebaseFirestore.getInstance().collection("Admins")
+                            .document(current_user.getUid()).update(
+                            "userProfile.name",
+                            mFirstNameString + " " + mLastNameString).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Intent homeIntent = new Intent(NameSubmitActivity.this, HomeActivity.class);
+                            startActivity(homeIntent);
+                            finish();
+                        }
+                    });
+
+                   /* FirebaseFirestore.getInstance().collection("Users")
                             .document(current_user.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            /*if (task.isSuccessful() && task.getResult() != null) {
+                            *//*if (task.isSuccessful() && task.getResult() != null) {
                                 UserInformation userInformationResult = task.getResult().toObject(UserInformation.class);
                                 UserProfile userProfile = new UserProfile();
                                 userProfile.setName(userInformationResult.getUserProfile().getName());
@@ -66,19 +84,14 @@ public class NameSubmitActivity extends AppCompatActivity implements View.OnClic
                                 userProfile.setUid(userInformationResult.getUserProfile().getUid());
                                 UserLocation userLocation = new UserLocation();
                                 userLocation.setGeoPoint(userInformationResult.getUserLocation().getGeoPoint());
-                                userLocation.setTimeStamp(userInformationResult.getUserLocation().getTimeStamp());*/
+                                userLocation.setTimeStamp(userInformationResult.getUserLocation().getTimeStamp());*//*
 
 //                                UserInformation userInformation = new UserInformation(userProfile, userLocation);
-                                FirebaseFirestore.getInstance().collection("Admins")
-                                        .document(current_user.getUid()).update(
-                                                "userProfile.name",
-                                                mFirstNameString + " " + mLastNameString);
+
 //                            }
                         }
-                    });
-                        Intent homeIntent = new Intent(NameSubmitActivity.this, HomeActivity.class);
-                    startActivity(homeIntent);
-                    finish();
+                    });*/
+
                     break;
             }
         }

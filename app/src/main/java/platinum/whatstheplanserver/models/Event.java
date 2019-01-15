@@ -1,5 +1,6 @@
 package platinum.whatstheplanserver.models;
 
+import android.location.Location;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -22,11 +23,12 @@ public class Event implements Parcelable{
     private String event_image;
     private String admin_id;
     private GeoPoint event_geopoint;
+    private int event_tickets;
 
     public Event() {
     }
 
-    public Event(String event_name, String event_type, String event_subtype, String venue_name, String venue_id, String venue_address, String venue_image, String event_date, String event_time, String event_id, String event_image, String admin_id, GeoPoint event_geopoint) {
+    public Event(String event_name, String event_type, String event_subtype, String venue_name, String venue_id, String venue_address, String venue_image, String event_date, String event_time, String event_id, String event_image, String admin_id, GeoPoint event_geopoint, int event_tickets) {
         this.event_name = event_name;
         this.event_type = event_type;
         this.event_subtype = event_subtype;
@@ -40,6 +42,7 @@ public class Event implements Parcelable{
         this.event_image = event_image;
         this.admin_id = admin_id;
         this.event_geopoint = event_geopoint;
+        this.event_tickets = event_tickets;
     }
 
     protected Event(Parcel in) {
@@ -58,6 +61,7 @@ public class Event implements Parcelable{
         Double lat = in.readDouble();
         Double lng = in.readDouble();
         event_geopoint = new GeoPoint(lat, lng);
+        event_tickets = in.readInt();
     }
 
     public static final Creator<Event> CREATOR = new Creator<Event>() {
@@ -176,6 +180,14 @@ public class Event implements Parcelable{
         this.event_geopoint = event_geopoint;
     }
 
+    public int getevent_tickets() {
+        return event_tickets;
+    }
+
+    public void setevent_tickets(int event_tickets) {
+        this.event_tickets = event_tickets;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -197,6 +209,7 @@ public class Event implements Parcelable{
         parcel.writeString(admin_id);
         parcel.writeDouble(event_geopoint.getLatitude());
         parcel.writeDouble(event_geopoint.getLongitude());
+        parcel.writeInt(event_tickets);
 
     }
 }

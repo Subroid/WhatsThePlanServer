@@ -28,6 +28,7 @@ public class NewEventThirdActivity extends AppCompatActivity implements
     private Event mEvent;
     EditText mEventDateET;
     EditText mEventTimeET;
+    EditText mEventTicketsET;
     Button mNextBTN;
 
     @Override
@@ -62,6 +63,7 @@ public class NewEventThirdActivity extends AppCompatActivity implements
         }
         mEventDateET = findViewById(R.id.event_date_ET);
         mEventTimeET = findViewById(R.id.event_time_ET);
+        mEventTicketsET = findViewById(R.id.event_tickets_ET);
         mNextBTN = findViewById(R.id.next_BTN);
 
     }
@@ -78,6 +80,7 @@ public class NewEventThirdActivity extends AppCompatActivity implements
             case R.id.next_BTN :
                 mEvent.setEvent_date(mEventDateET.getText().toString());
                 mEvent.setEvent_time(mEventTimeET.getText().toString());
+                mEvent.setevent_tickets(Integer.parseInt(mEventTicketsET.getText().toString()));
                 finish();
                 navigateToNewActivityCarryingData(NewEventFourthActivity.class, "event", mEvent);
                 break;
@@ -119,11 +122,34 @@ public class NewEventThirdActivity extends AppCompatActivity implements
 
     @Override
     public void onTimeSet(TimePicker timePicker, int i, int i1) {
+        String hr = "";
+        String mm = "";
         if (i > 12) {
             i = i - 12;
-            mEventTimeET.setText(i + ":" + i1 + "pm");
-        } else {
-            mEventTimeET.setText(i + ":" + i1 + "am");
+            if (i < 10) {
+                hr = "0" + i;
+            } else {
+                hr = String.valueOf(i);
+            }
+            if (i1 < 10) {
+                mm = "0" + i1;
+            } else {
+                mm = String.valueOf(i1);
+            }
+            mEventTimeET.setText(hr + ":" + mm + "pm");
+        }
+        else {
+            if (i < 10) {
+                hr = "0" + i;
+            } else {
+                hr = String.valueOf(i);
+            }
+            if (i1 < 10) {
+                mm = "0" + i1;
+            } else {
+                mm = String.valueOf(i1);
+            }
+            mEventTimeET.setText(hr + ":" + i1 + "am");
         }
     }
 }

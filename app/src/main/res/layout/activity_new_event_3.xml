@@ -53,7 +53,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/WhiteFFFFFF"
                 android:padding="@dimen/_10sdp"
-                android:text="Event Date"
+                android:hint="Event Date"
+                android:textColorHint="@color/GreyCDCDCD"
                 android:textSize="@dimen/_14ssp"
                 android:textColor="@color/Black000000"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -70,7 +71,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/WhiteFFFFFF"
                 android:padding="@dimen/_10sdp"
-                android:text="Event Time"
+                android:hint="Event Time"
+                android:textColorHint="@color/GreyCDCDCD"
                 android:textSize="@dimen/_14ssp"
                 android:textColor="@color/Black000000"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -78,7 +80,24 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/event_date_ET"
-                app:layout_constraintVertical_bias="0.02" />
+                app:layout_constraintVertical_bias="0.05" />
+
+            <EditText
+                android:id="@+id/event_tickets_ET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/WhiteFFFFFF"
+                android:padding="@dimen/_10sdp"
+                android:hint="Event Tickets"
+                android:textColorHint="@color/GreyCDCDCD"
+                android:textSize="@dimen/_14ssp"
+                android:textColor="@color/Black000000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/event_time_ET"
+                app:layout_constraintVertical_bias="0.08" />
 
 
             <Button
@@ -94,7 +113,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/event_time_ET"
+                app:layout_constraintTop_toBottomOf="@+id/event_tickets_ET"
                 app:layout_constraintVertical_bias="0.1" />
 
 

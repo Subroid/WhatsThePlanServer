@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,11 +29,13 @@ public class SignUpActivity extends AppCompatActivity {
     //todo signup button pink selector color when clicked
 
     private static final String TAG = "SignUpActivityTag";
-    TextInputEditText emailTIET;
-    TextInputEditText passwordTIET;
-    Button signUpBTN;
-    String mEmailString;
-    String mPasswordString;
+    private TextInputEditText emailTIET;
+    private TextInputEditText passwordTIET;
+    private Button signUpBTN;
+    private String mEmailString;
+    private String mPasswordString;
+    private ProgressBar progressBar;
+
 
        @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +45,17 @@ public class SignUpActivity extends AppCompatActivity {
         emailTIET = findViewById(R.id.sua_emailET);
         passwordTIET = findViewById(R.id.sua_passwordET);
         signUpBTN = findViewById(R.id.sua_signupBTN);
+        progressBar = findViewById(R.id.progressbarPB);
 
 
         signUpBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
                 mEmailString = emailTIET.getText().toString();
                 mPasswordString = passwordTIET.getText().toString();
                 if (mEmailString.isEmpty() || mPasswordString.isEmpty() || mPasswordString.length() < 6) {
+                    progressBar.setVisibility(View.INVISIBLE);
                     FancyToast.makeText(getApplicationContext(),
                             "Please type valid Email or Password",
                             FancyToast.LENGTH_LONG, FancyToast.ERROR,false).show();
@@ -70,6 +76,7 @@ public class SignUpActivity extends AppCompatActivity {
                                                     @Override
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         if (task.isSuccessful()) {
+                                                            progressBar.setVisibility(View.INVISIBLE);
                                                             Intent nameSubmitIntent = new Intent(
                                                                     SignUpActivity.this, NameSubmitActivity.class);
                                                             startActivity(nameSubmitIntent);
@@ -78,6 +85,7 @@ public class SignUpActivity extends AppCompatActivity {
                                                     }
                                                 });
                                     } else {
+                                        progressBar.setVisibility(View.INVISIBLE);
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                         FancyToast.makeText(getApplicationContext(),
                                                 "There is some error while creating new account",

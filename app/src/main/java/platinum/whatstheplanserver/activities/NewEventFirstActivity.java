@@ -280,7 +280,7 @@ public class NewEventFirstActivity extends AppCompatActivity implements View.OnC
                         Log.d(TAG, "onEvent: mVenue.getVenue_geopoint = " + mVenue.getVenue_geopoint());
                         mEvent = new Event(null, mVenue.getVenue_main_event(), mVenue.getVenue_sub_events(), mVenue.getVenue_name(),
                                 mVenue.getVenue_id(), mVenue.getVenue_address(), mVenue.getVenue_image(),
-                                null, null, null, null, FirebaseAuth.getInstance().getUid(), mVenue.getVenue_geopoint());
+                                null, null, null, null, FirebaseAuth.getInstance().getUid(), mVenue.getVenue_geopoint(), 0);
                         mVenueAddressTV.setText(mVenue.getVenue_address());
                     } else {
                         new AlertDialog.Builder(NewEventFirstActivity.this)
