@@ -52,7 +52,8 @@
         <activity
             android:name=".activities.VenueOnMapActivity"
             android:label="@string/title_activity_venue_on_map" />
-        <activity android:name=".activities.NewEventFourthActivity"></activity>
+        <activity android:name=".activities.NewEventFourthActivity" />
+        <activity android:name=".activities.BookingsActivity"></activity>
     </application>
 
 </manifest>

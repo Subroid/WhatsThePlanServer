@@ -149,7 +149,7 @@
         android:id="@+id/venue_name_TV"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#cc000000"
+        android:background="#99000000"
         android:fontFamily="monospace"
         android:gravity="start|bottom"
         android:paddingLeft="@dimen/_5sdp"
@@ -170,7 +170,7 @@
         android:id="@+id/venue_address_TV"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#cc000000"
+        android:background="#99000000"
         android:fontFamily="monospace"
         android:gravity="start|top"
         android:paddingLeft="@dimen/_5sdp"
@@ -181,7 +181,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintHeight_percent="0.2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/venue_name_TV"
@@ -213,7 +213,7 @@
 
 
     <Button
-        android:id="@+id/bookings_BTN"
+        android:id="@+id/event_bookings_BTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shpae_persianpink"
