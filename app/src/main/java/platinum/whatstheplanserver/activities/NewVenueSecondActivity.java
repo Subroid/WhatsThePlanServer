@@ -60,7 +60,7 @@ public class NewVenueSecondActivity extends AppCompatActivity implements View.On
 
     private void initViewsAndVariables() {
         mVenue = getIntent().getParcelableExtra("venue");
-        mMainEvents = new String[]{"Main Event", "Restaurants", "Open Events", "Parties", "Sports"};
+        mMainEvents = new String[]{"Main Event", "Foods Drinks", "Open Events", "Parties", "Sports"};
         mVenueMainEventSPNR = findViewById(R.id.venue_main_event_SPNR);
         mVenueSubEventsET = findViewById(R.id.venue_sub_events_ET);
         mNextBTN = findViewById(R.id.next_BTN);
