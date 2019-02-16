@@ -10,6 +10,7 @@
         android:id="@+id/tabLayout_TL"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent="0.12"
         android:background="@drawable/events_panorama_1280_262"

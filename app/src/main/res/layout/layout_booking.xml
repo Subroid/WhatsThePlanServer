@@ -15,20 +15,26 @@
         android:text="Guest Name :"
         android:textSize="@dimen/_10ssp"
         android:textColor="@color/Black000000"
+        android:gravity="start"
+        android:padding="@dimen/_5sdp"
+        android:background="@drawable/rectangle_strokeonly_black000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01999998" />
+        app:layout_constraintVertical_bias="0.02" />
 
     <TextView
         android:id="@+id/guest_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_strokeonly_black000000"
+        android:padding="@dimen/_5sdp"
         android:text="Guest Email :"
         android:textSize="@dimen/_10ssp"
         android:textColor="@color/Black000000"
+        android:gravity="start"
         android:layout_marginTop="@dimen/_5sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

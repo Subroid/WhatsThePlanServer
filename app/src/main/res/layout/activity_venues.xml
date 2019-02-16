@@ -10,13 +10,14 @@
         android:id="@+id/tabLayout_TL"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@drawable/venues_panorama_1280_270"
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent="0.12"
-        android:background="@drawable/venues_panorama_1280_270"
-        app:tabMode="fixed"
-        app:tabIndicatorFullWidth="true"
+        app:layout_constraintTop_toTopOf="parent"
         app:tabIndicator="@color/colorPrimary"
-        app:tabIndicatorHeight="@dimen/_5sdp">
+        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorHeight="@dimen/_5sdp"
+        app:tabMode="fixed">
 
     </android.support.design.widget.TabLayout>
 

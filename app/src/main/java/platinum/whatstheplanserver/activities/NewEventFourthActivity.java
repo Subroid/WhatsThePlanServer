@@ -169,6 +169,7 @@ public class NewEventFourthActivity extends AppCompatActivity implements View.On
                                                                                          public void onComplete(String key, DatabaseError error) {
                                                                                              Log.d(TAG, "onComplete: key = " + key);
                                                                                              mProgressBar.setVisibility(View.GONE);
+                                                                                             finish();
                                                                                              navigateToNewActivity(EventsActivity.class);
                                                                                          }
                                                                                      });

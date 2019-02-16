@@ -15,11 +15,16 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
+import com.firebase.geofire.GeoFire;
+import com.firebase.geofire.GeoLocation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -47,6 +52,8 @@ public class NewVenueThirdActivity extends AppCompatActivity implements View.OnC
     private Boolean mVenueImageUploadClicked;
     private FirebaseFirestore mFireDb;
     private CollectionReference mVenuesDbRef;
+    private FirebaseDatabase mFireRdb;
+    private DatabaseReference mVenuesRdbRef;
     private final int REQUEST_SELECT_PICTURE_CODE_1 =  1;
 
     @Override
@@ -83,6 +90,8 @@ public class NewVenueThirdActivity extends AppCompatActivity implements View.OnC
         mVenuesDbRef = mFireDb.collection("Admins")
                 .document(mCurrentUser.getUid())
                 .collection("Venues");
+        mFireRdb = FirebaseDatabase.getInstance();
+        mVenuesRdbRef = mFireRdb.getReference(mVenue.getVenue_main_event() + "Venues");
         mVenueImageUploadClicked = false;
         mVenueImageIV = findViewById(R.id.venue_image_IV);
         mVenueImageUploadBTN = findViewById(R.id.venue_image__upload_BTN);
@@ -131,14 +140,31 @@ public class NewVenueThirdActivity extends AppCompatActivity implements View.OnC
                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                         @Override
                                         public void onSuccess(DocumentReference documentReference) {
-                                            String venueId = documentReference.getId();
+                                            final String venueId = documentReference.getId();
                                             mVenuesDbRef.document(venueId)
                                                     .update("venue_id", venueId).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
-                                                    mProgressBar.setVisibility(View.GONE);
-                                                    finish();
-                                                    navigateToNewActivity(VenuesActivity.class);
+                                                    mVenuesDbRef = mFireDb.collection(mVenue.getVenue_main_event() + "Venues");
+
+                                                    mVenuesDbRef.document(venueId).set(mVenue).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            GeoFire geoFire = new GeoFire(mVenuesRdbRef);
+                                                            geoFire.setLocation(venueId,
+                                                                    new GeoLocation(mVenue.getVenue_geopoint().getLatitude(), mVenue.getVenue_geopoint().getLongitude()),
+                                                                    new GeoFire.CompletionListener() {
+                                                                        @Override
+                                                                        public void onComplete(String key, DatabaseError error) {
+                                                                            mProgressBar.setVisibility(View.GONE);
+                                                                            finish();
+                                                                            navigateToNewActivity(VenuesActivity.class);
+                                                                        }
+                                                                    });
+                                                        }
+
+
+                                                    });
                                                 }
                                             });
                                         }
