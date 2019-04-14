@@ -52,7 +52,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shpae_persianpink"
-        android:fontFamily="cursive"
+        android:fontFamily="@font/nyala"
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:paddingTop="@dimen/_4sdp"

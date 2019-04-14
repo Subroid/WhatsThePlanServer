@@ -68,7 +68,7 @@ public class EventsActivity extends AppCompatActivity {
     }
 
 
-    private void initViewsAndVariables() {
+    private void initViewsAndVariables()    {
 
         mDifferentViewPagerCurrentTab  = false;
         if (getIntent().getBooleanExtra("mDifferentViewPagerCurrentTab", false)) {

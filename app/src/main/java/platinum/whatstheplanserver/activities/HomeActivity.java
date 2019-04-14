@@ -14,6 +14,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 
 import platinum.whatstheplanserver.R;
+import platinum.whatstheplanserver.activities.authentications.PhoneAuthActivity;
 import platinum.whatstheplanserver.activities.authentications.SignInActivity;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
@@ -37,7 +38,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private void getCurrentUser() {
         mCurrentUser = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
         if (mCurrentUser == null) {
-            navigateToNewActivity (SignInActivity.class);
+            navigateToNewActivity (PhoneAuthActivity.class);
         }
     }
 
@@ -78,6 +79,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private void navigateToNewActivity(Class classname) {
         Intent intent = new Intent(HomeActivity.this, classname);
         startActivity(intent);
+        finish();
     }
 
     @Override

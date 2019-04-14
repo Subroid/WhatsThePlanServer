@@ -18,10 +18,9 @@
             android:id="@+id/toolbar_title_TV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="cursive"
+            android:fontFamily="@font/nyala"
             android:gravity="center"
             android:text="New Event"
-            android:textStyle="bold"
             android:textColor="@color/WhiteFFFFFF"
             android:textSize="@dimen/_20ssp" />
 

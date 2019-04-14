@@ -57,7 +57,7 @@
         app:layout_constraintWidth_percent="0.9"
         android:layout_height="wrap_content"
         android:background="@drawable/round_shpae_blue10e7dc"
-        android:fontFamily="cursive"
+        android:fontFamily="@font/nyala"
         android:text="Submit"
         android:textAllCaps="false"
         android:textColor="@color/WhiteFFFFFF"

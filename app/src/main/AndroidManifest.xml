@@ -27,6 +27,8 @@
         <activity android:name=".activities.EventsActivity" />
         <activity android:name=".activities.authentications.SignInActivity" />
         <activity android:name=".activities.authentications.SignUpActivity" />
+        <activity android:name=".activities.authentications.PhoneAuthActivity" />
+        <activity android:name=".activities.authentications.VerifyPhoneActivity" />
         <activity android:name=".activities.authentications.NameSubmitActivity" />
         <activity android:name=".activities.authentications.PasswordResetActivity" />
         <activity android:name=".activities.NewEventSecondActivity" />

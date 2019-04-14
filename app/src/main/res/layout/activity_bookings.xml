@@ -11,18 +11,18 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/toolbar_title_TV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="cursive"
+            android:fontFamily="@font/nyala"
             android:gravity="center"
             android:text="(Event Name) bookings "
             android:textColor="@color/WhiteFFFFFF"
-            android:textSize="@dimen/_20ssp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/_20ssp" />
 
     </android.support.v7.widget.Toolbar>
 

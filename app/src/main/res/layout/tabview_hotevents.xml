@@ -8,5 +8,5 @@
     android:textStyle="bold"
     android:textColor="@color/WhiteFFFFFF"
     android:textSize="@dimen/_14ssp"
-    android:fontFamily="cursive"
+    android:fontFamily="@font/nyala"
     android:gravity="center"/>
